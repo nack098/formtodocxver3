@@ -1,10 +1,16 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'node:path';
 import {URL} from 'node:url';
+import './security-restrictions';
+import './ipc/ipcHandler';
+import './store/store';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
+    width: 1024,
+    height: 576,
+    titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -25,16 +31,10 @@ async function createWindow() {
   browserWindow.on('ready-to-show', () => {
     browserWindow?.show();
 
-    if (import.meta.env.DEV) {
-      browserWindow?.webContents.openDevTools();
-    }
+    // if (import.meta.env.DEV) {
+    //   browserWindow?.webContents.openDevTools();
+    // }
   });
-
-  /**
-   * URL for main window.
-   * Vite dev server for development.
-   * `file://../renderer/index.html` for production and test.
-   */
   const pageUrl =
     import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
       ? import.meta.env.VITE_DEV_SERVER_URL
@@ -45,9 +45,6 @@ async function createWindow() {
   return browserWindow;
 }
 
-/**
- * Restore an existing BrowserWindow or Create a new BrowserWindow.
- */
 export async function restoreOrCreateWindow() {
   let window = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
 

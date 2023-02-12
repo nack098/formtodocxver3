@@ -1,5 +1,4 @@
 import {app} from 'electron';
-import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
 import {platform} from 'node:process';
 
@@ -70,9 +69,7 @@ if (import.meta.env.PROD) {
     .then(() => import('electron-updater'))
     .then(module => {
       const autoUpdater =
-        module.autoUpdater ||
-        // @ts-expect-error Hotfix for https://github.com/electron-userland/electron-builder/issues/7338
-        (module.default.autoUpdater as (typeof module)['autoUpdater']);
+        module.autoUpdater || (module.default.autoUpdater as (typeof module)['autoUpdater']);
       return autoUpdater.checkForUpdatesAndNotify();
     })
     .catch(e => console.error('Failed check and install updates:', e));
