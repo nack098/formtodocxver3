@@ -1,7 +1,6 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'node:path';
 import {URL} from 'node:url';
-import './security-restrictions';
 import './ipc/ipcHandler';
 import './store/store';
 
