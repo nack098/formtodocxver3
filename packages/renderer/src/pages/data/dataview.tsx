@@ -31,7 +31,8 @@ const DataView = () => {
   const [location, locationState] = useState('');
   const [template, templateState] = useState('');
 
-  const param = new URLSearchParams(window.location.search);
+  const urlparam = window.location.toString().split('/').pop()?.split('?').pop() || 'index=0&data=0';
+  const param = new URLSearchParams('?' + urlparam);
   const data = JSON.parse(localStorage.getItem('data') || '[]');
   const dataArray: any = Object.values(data[param.get('index') || 0])[0];
 
