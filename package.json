@@ -57,6 +57,7 @@
     "@types/google-spreadsheet": "^3.3.1",
     "@types/react-table": "^7.7.14",
     "docx-templates": "^4.9.2",
+    "electron-router-dom": "^1.0.5",
     "electron-settings": "^4.0.2",
     "electron-store": "^8.1.0",
     "electron-updater": "5.3.0",

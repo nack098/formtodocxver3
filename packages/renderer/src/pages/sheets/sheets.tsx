@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, Outlet} from 'react-router-dom';
+import {Link, Outlet, useSearchParams} from 'react-router-dom';
 import {getSettings, getSheetList, getSheetData} from '/@/modules/api_modules';
 
 const Sheets = () => {
@@ -8,11 +8,12 @@ const Sheets = () => {
   const [cerdPath, cerdPathState] = useState<string>('');
   const [currentIndex, currentIndexState] = useState(0);
 
-  const urlParams = new URLSearchParams(window.location.search);
-
+  const param = window.location.toString().split('/').pop()?.split('?').pop() || 'index=0&data=0';
+  const urlParams = new URLSearchParams('?' + param);
   useEffect(() => {
     getSettings().then(async settings => {
       const dataIndex = urlParams.get('index');
+      console.log(dataIndex);
       if (dataIndex !== null) {
         const cerdPath = settings[parseInt(dataIndex)] || '';
         cerdPathState(cerdPath);
