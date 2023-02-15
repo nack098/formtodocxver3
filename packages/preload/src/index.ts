@@ -3,9 +3,15 @@
  * @module preload
  */
 
+
+
+
+export {sha256sum} from './nodeCrypto';
+export {versions} from './versions';
+
 import {ipcRenderer, contextBridge} from 'electron';
 
-const WINDOW_API = {
+export const api = {
   openFile: () => ipcRenderer.invoke('openFile'),
   updateSettings: (newData: string[]) => ipcRenderer.invoke('updateSettings', newData),
   getSheetList: (cerdPath: object) => ipcRenderer.invoke('getSheetList', cerdPath),
@@ -15,7 +21,3 @@ const WINDOW_API = {
   dataToDocx: (value: object) => ipcRenderer.invoke('dataToDocx', value),
 };
 
-contextBridge.exposeInMainWorld('api', WINDOW_API);
-
-export {sha256sum} from './nodeCrypto';
-export {versions} from './versions';

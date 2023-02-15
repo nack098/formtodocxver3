@@ -1,5 +1,5 @@
 const getSettings = async () => {
-  const settings = await window.api.getSettings();
+  const settings = await window.__electron_preload__api.getSettings();
   return settings;
 };
 

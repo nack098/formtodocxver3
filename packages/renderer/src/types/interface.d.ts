@@ -4,7 +4,7 @@ export declare global {
     id?: string;
   }
   interface Window {
-    api: {
+    __electron_preload__api: {
       getFolder: () => Promise<string>;
       updateSettings: (data: string[]) => void;
       getCerdData: () => Promise<object>;

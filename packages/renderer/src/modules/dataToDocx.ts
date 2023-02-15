@@ -1,3 +1,3 @@
 export default async function dataToDocx(value: object) {
-  await window.api.dataToDocx(value);
+  await window.__electron_preload__api.dataToDocx(value);
 }

@@ -1,5 +1,5 @@
 const updateSettings = async (data: string[]) => {
-  await window.api.updateSettings(data);
+  await window.__electron_preload__api.updateSettings(data);
 };
 
 export default updateSettings;
