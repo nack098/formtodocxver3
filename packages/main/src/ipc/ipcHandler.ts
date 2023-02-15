@@ -80,9 +80,17 @@ ipcMain.handle('getSheetData', async (event, args) => {
       const header = Object.getOwnPropertyNames(row).filter(
         value => value !== '_sheet' && value !== '_rawData' && value !== '_rowNumber',
       );
-      const rowValue = new Map(header.map(value => [value, row[value]]));
+      const rowValue = new Map(
+        header.map(value => {
+          if (row[value]) {
+            return [value, row[value]];
+          } else {
+            return [value, ''];
+          }
+        }),
+      );
+
       const rowObject = Object.fromEntries(rowValue);
-      console.log(rowObject);
       rowArray.push(rowObject);
     }
     const returnValue = {[data.title]: rowArray};

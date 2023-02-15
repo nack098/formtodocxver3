@@ -82,10 +82,10 @@ const DataView = () => {
   };
 
   const submitHandler = () => {
-    const data = selectedFlatRows.map(value => value.original);
+    const sendInValue = selectedFlatRows.map(value => value.original);
 
     dataToDocx({
-      data: data,
+      data: sendInValue,
       outputPath: location,
       path: template,
     });
