@@ -3,9 +3,6 @@
  * @module preload
  */
 
-
-
-
 export {sha256sum} from './nodeCrypto';
 export {versions} from './versions';
 
@@ -20,4 +17,3 @@ export const api = {
   getFolder: () => ipcRenderer.invoke('getFolder'),
   dataToDocx: (value: object) => ipcRenderer.invoke('dataToDocx', value),
 };
-
