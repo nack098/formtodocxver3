@@ -5,6 +5,7 @@
 package.json
 package-lock.json
 .electron-vendors.cache.json
+dataview.tsx
 
 .github
 .idea
